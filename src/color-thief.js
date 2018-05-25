@@ -57,7 +57,9 @@ CanvasImage.prototype.removeCanvas = function () {
 };
 
 
-var ColorThief = function () {};
+var ColorThief = function (sourceImage) {
+    this.sourceImage = sourceImage;
+};
 
 /*
  * getColor(sourceImage[, quality])
@@ -72,8 +74,8 @@ var ColorThief = function () {};
  * most dominant color.
  *
  * */
-ColorThief.prototype.getColor = function(sourceImage, quality) {
-    var palette       = this.getPalette(sourceImage, 5, quality);
+ColorThief.prototype.getColor = function(quality) {
+    var palette = this.getPalette(this.sourceImage, 5, quality);
     var dominantColor = palette[0];
     return dominantColor;
 };
@@ -96,7 +98,7 @@ ColorThief.prototype.getColor = function(sourceImage, quality) {
  *
  *
  */
-ColorThief.prototype.getPalette = function(sourceImage, colorCount, quality) {
+ColorThief.prototype.getPalette = function(colorCount, quality) {
 
     if (typeof colorCount === 'undefined' || colorCount < 2 || colorCount > 256) {
         colorCount = 10;
@@ -106,7 +108,7 @@ ColorThief.prototype.getPalette = function(sourceImage, colorCount, quality) {
     }
 
     // Create custom CanvasImage object
-    var image      = new CanvasImage(sourceImage);
+    var image      = new CanvasImage(this.sourceImage);
     var imageData  = image.getImageData();
     var pixels     = imageData.data;
     var pixelCount = image.getPixelCount();
