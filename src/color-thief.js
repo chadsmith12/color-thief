@@ -1,5 +1,13 @@
 /*
- * Color Thief v2.0
+* This version of color-thief and has been forked to be updated to fix a couple of bugs
+* Forked By - Chad Smith
+* Updates:
+* ColorThief constructor now takes in the source image. All instances of color thief work off this instance.
+* v2.0.3
+*/
+
+/*
+ * Color Thief v2.0.3
  * by Lokesh Dhakar - http://www.lokeshdhakar.com
  *
  * Thanks
